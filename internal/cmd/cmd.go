@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ellie-idb/go-riscv/internal/riscv"
+	"github.com/rv32ima/go-riscv/internal/riscv"
 	"github.com/spf13/cobra"
 	"golang.org/x/exp/constraints"
 )

@@ -1,4 +1,4 @@
-module github.com/ellie-idb/go-riscv
+module github.com/rv32ima/go-riscv
 
 go 1.24.0
 

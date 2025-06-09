@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ellie-idb/go-riscv/internal/cmd"
+	"github.com/rv32ima/go-riscv/internal/cmd"
 )
 
 func main() {

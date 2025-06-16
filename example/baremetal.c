@@ -28,7 +28,7 @@ static void nprint( intptr_t ptr )
 
 static inline uint32_t get_cyc_count() {
 	uint32_t ccount;
-	asm volatile(".option norvc\ncsrr %0, 0xC00":"=r" (ccount));
+	asm volatile(".option norvc\ncsrr %0, 0xC00": "=r" (ccount));
 	return ccount;
 }
 
@@ -38,8 +38,8 @@ int main()
 	lprint("Hello world from RV32 land.\n");
 	lprint("main is at: ");
 	pprint( (intptr_t)main );
-	lprint("\nAssembly code: ");
-	asm_demo_func();
+	// lprint("\nAssembly code: ");
+	// asm_demo_func();
 	lprint("\n");
 
 	// Wait a while.
@@ -47,14 +47,28 @@ int main()
 	uint32_t timer_initial = TIMERL;
 
 	volatile int i;
-	for( i = 0; i < 1000000; i++ )
+	for( i = 0; i < 100000; i++ )
 	{
 		asm volatile( "nop" );
 	}
 
+	lprint("asdf\n");
+
 	// Gather the wall-clock time and # of cycles
 	uint32_t cyclecount = get_cyc_count() - cyclecount_initial;
-	uint32_t timer = TIMERL - timer_initial;
+	uint32_t timer = (TIMERL - timer_initial) / 1000000;
+
+	lprint("Initial cycle count: ");
+	nprint(cyclecount_initial);
+	lprint("\n");
+
+	lprint("Cycle count difference: ");
+	nprint(cyclecount);
+	lprint("\n");
+
+	lprint("Timer: ");
+	nprint(timer);
+	lprint("\n");
 
 	lprint( "Processor effective speed: ");
 	nprint( cyclecount / timer );

@@ -6,12 +6,11 @@ import (
 )
 
 func TestSignExtend(t *testing.T) {
-	ir := uint32(0xfe01_0113)
-	imm := ir >> 20
-	expected := (imm | 0xffff_f000)
-	if signExtend(imm, 11) != expected {
-		fmt.Printf("%08x\n", imm)
-		fmt.Printf("%08x\n", expected)
+	ir := uint32(0xffe)
+	expected := int32(-2)
+	if int32(signExtend(ir, 11)) != expected {
+		fmt.Printf("%08x\n", ir)
+		fmt.Printf("%08x\n", uint32(expected))
 
 		t.Fatal("wrong sign extend")
 	}
